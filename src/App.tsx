@@ -48,7 +48,7 @@ function App() {
     <div className="min-h-screen bg-transparent flex items-center justify-center">
       <div className="bg-gray-900/80 backdrop-blur-sm p-6 rounded-2xl shadow-xl border border-gray-800 flex items-center gap-6">
         <div className="flex items-center gap-3">
-          {!status.isPaused || status.timeState !== "focus" ? (
+          {!status.isPaused || status.timeState === "focus" ? (
             <Timer className={`w-8 h-8 ${stateColors[status.timerState]}`} />
           ) : (
             <TimerOff className={`w-8 h-8 ${stateColors[status.timerState]}`} />
