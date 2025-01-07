@@ -1,5 +1,5 @@
 import React from 'react';
-import { Timer, TimerOff, Play, Pause } from 'lucide-react';
+import { Timer, TimerOff, Play, Pause, TimerReset } from 'lucide-react';
 import { useTimer } from './hooks/useTimer';
 import { formatTime } from './utils/formatTime';
 import { TimerSettings } from './types';
@@ -48,10 +48,12 @@ function App() {
     <div className="min-h-screen bg-transparent flex items-center justify-center">
       <div className="bg-gray-900/80 backdrop-blur-sm p-6 rounded-2xl shadow-xl border border-gray-800 flex items-center gap-6">
         <div className="flex items-center gap-3">
-          {!status.isPaused || status.timeState === "focus" ? (
+          {status.isPaused ? (
+            <TimerOff className={`w-8 h-8 ${stateColors[status.timerState]}`} />
+          ) : status.timerState === 'focus' ? (
             <Timer className={`w-8 h-8 ${stateColors[status.timerState]}`} />
           ) : (
-            <TimerOff className={`w-8 h-8 ${stateColors[status.timerState]}`} />
+            <TimerReset className={`w-8 h-8 ${stateColors[status.timerState]}`} />
           )}
           <div>
             <h2 className={`text-4xl font-bold font-mono ${stateColors[status.timerState]}`}>
