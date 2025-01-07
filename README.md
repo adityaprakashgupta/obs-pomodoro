@@ -46,7 +46,7 @@ This project provides a customizable Pomodoro timer overlay for OBS (Open Broadc
 To use the Pomodoro overlay in OBS, add a Browser source with the following URL and query parameters for customization:
 
 ```
-http://localhost:4173/?focusTime=60&shortBreakTime=5&longBreakTime=15&totalSessions=10&longBreakAfter=4&showPauseButton=true
+http://localhost:4173/?focusTime=60&shortBreakTime=5&longBreakTime=15&totalSessions=10&longBreakAfter=4&showPauseButton=true&twitchChannel={{YourChannelName}}
 ```
 
 ### Query Parameters
@@ -57,6 +57,7 @@ http://localhost:4173/?focusTime=60&shortBreakTime=5&longBreakTime=15&totalSessi
 - `totalSessions`: Total number of Pomodoro sessions (default: 4)
 - `longBreakAfter`: Number of sessions after which a long break occurs (default: 4)
 - `showPauseButton`: Whether to show the pause button (default: true)
+- `twitchChannel`: If provided, the broadcaster can play/pause the timer by sending the `!timer` command in the chat.
 
 ## Contributing
 
