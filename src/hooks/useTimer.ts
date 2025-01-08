@@ -1,6 +1,14 @@
 import { useState, useEffect, useCallback } from "react";
 import { TimerSettings, TimerState, TimerStatus } from "../types";
 
+// Create and initialize Audio instances immediately
+const focusSound = new Audio('/ringtone-193209.mp3');
+const breakSound = new Audio('/school-bell-199584.mp3');
+
+// Preload sounds
+focusSound.load();
+breakSound.load();
+
 export function useTimer(settings: TimerSettings) {
   const [status, setStatus] = useState<TimerStatus>({
     currentSession: 1,
@@ -9,6 +17,12 @@ export function useTimer(settings: TimerSettings) {
     isPaused: true,
     countdownToStart: 5,
   });
+
+  const playSound = useCallback((state: TimerState) => {
+    const sound = state === 'focus' ? focusSound : breakSound;
+    sound.currentTime = 0;
+    sound.play().catch(() => {});
+  }, []);
 
   const getNextState = useCallback((): TimerState => {
     if (status.timerState === "focus") {
@@ -82,6 +96,9 @@ export function useTimer(settings: TimerSettings) {
               return { ...prev, isPaused: true };
             }
 
+            // Play sound when changing states
+            playSound(nextState);
+
             return {
               ...prev,
               currentSession: nextSession,
@@ -105,6 +122,7 @@ export function useTimer(settings: TimerSettings) {
     getTimeForState,
     status.isPaused,
     status.countdownToStart,
+    playSound,
   ]);
 
   return { ...status, togglePause, setStatus };
