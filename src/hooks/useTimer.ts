@@ -3,7 +3,7 @@ import { TimerSettings, TimerState, TimerStatus } from "../types";
 
 // Create and initialize Audio instances immediately
 const focusSound = new Audio('/ringtone-193209.mp3');
-const breakSound = new Audio('/school-bell-199584.mp3');
+const breakSound = new Audio('/bell-172780.mp3');
 
 // Preload sounds
 focusSound.load();
